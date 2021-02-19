@@ -1,0 +1,96 @@
+---
+title: "Kanye West"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+---
+```{r, include = FALSE}
+library(spotifyr)
+library(tidyverse)
+library(usethis)
+library(knitr)
+library(compmus)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+The Corpus: 
+Most people know the hip-hop artist Kanye West.
+One of the interesting things about him, was how his mental state 
+affected what he was writing about, the feeling of the music and
+how well it was recieved. I want to research through all the albums
+of Kanye West, if there is actually a difference between the songs during the 
+time he was manic, and later in his career when he calmed down. 
+
+We will use eleven albums, nine of them are produced by Kanye West alone, and 
+the other two are colabs. We will use the US sales to measure the success of 
+each album. 
+```{r}
+
+```
+
+```{r}
+
+Kanye <- get_artist_audio_features("kanye west")
+Kanye
+by_album <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "Late Registration" |
+         album_name == "Graduation" | 
+         album_name == "808s & Heartbreak" |
+         album_name == "My Beautiful Dark Twisted Fantasy" |
+         album_name == "Yeezus" |
+         album_name == "The Life Of Pablo" |
+         album_name == "ye" |
+         album_name == "JESUS IS KING") %>%
+  group_by(album_name, album_release_year) %>%
+  summarize(valence = mean(valence),
+            energy = mean(energy),
+            tempo = mean(tempo))
+  
+ggplot(by_album, aes(x = album_release_year, y = valence, color = album_name)) +
+    geom_point() +
+    stat_smooth(method = "lm",
+        col = "#C42126",
+        se = FALSE,
+        size = 1)
+
+ggplot(by_album, aes(x = album_release_year, y = energy, color = album_name)) +
+    geom_point() +
+    stat_smooth(method = "lm",
+        col = "#C42126",
+        se = FALSE,
+        size = 1)
+
+ggplot(by_album, aes(x = album_release_year, y = tempo, color = album_name)) +
+    geom_point() + 
+    stat_smooth(method = "lm",
+        col = "#C42126",
+        se = FALSE,
+        size = 1)
+```
+
+```{r cars}
+summary(cars)
+```
+
+## R Markdown
+
+The data:
+Most people know the hip-hop artist Kanye West.
+One of the interesting things about him, was how his mental state 
+affected what he was writing about, the feeling of the music and
+how well it was recieved. I want to research through all the albums
+of Kanye West, if there is actually a difference between the songs during the 
+time he was manic, and later in his career when he calmed down. 
+
+```{r pressure, echo=FALSE}
+plot(Kanye)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
