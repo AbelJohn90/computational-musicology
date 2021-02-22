@@ -1,0 +1,63 @@
+---
+title: "Kanye West"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, include = FALSE}
+library(spotifyr)
+library(tidyverse)
+library(usethis)
+library(knitr)
+library(compmus)
+```
+About Kanye
+================
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r}
+```   
+ 
+### Chart 3
+Kanye Omari Wests an American rapper, record producer, and fashion designer. He has been influential in the 21st-century development of mainstream hip hop and popular music in general.
+
+Born in Atlanta and raised in Chicago, West was first known as a producer for Roc-A-Fella Records in the early 2000s, producing singles for several mainstream artists. Intent on pursuing a solo career as a rapper, West released his debut album The College Dropout in 2004 to critical and commercial success, and founded the record label GOOD Music. He experimented with a variety of musical genres on subsequent acclaimed studio albums, including Late Registration (2005), Graduation (2007), and 808s & Heartbreak (2008). Drawing inspiration from maximalism and minimalism, respectively, West's fifth album My Beautiful Dark Twisted Fantasy (2010) and sixth album Yeezus (2013) were also critical successes. He went on to release The Life of Pablo (2016), Ye (2018), and Jesus Is King (2019). West's discography also includes the full-length collaborations Watch the Throne (2011) and Kids See Ghosts (2018) with Jay-Z and Kid Cudi, respectively. 
+```{r}
+
+```
+Albums
+================
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r}
+```   
+ 
+### Chart 3
+    
+```{r}
+```
