@@ -16,8 +16,8 @@ library(compmus)
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## R Markdown
+About Kanye West Page
+================
 
 The Corpus: 
 Most people know the hip-hop artist Kanye West.
@@ -32,6 +32,28 @@ the other two are colabs. We will use the US sales to measure the success of
 each album. 
 ```{r}
 
+```
+Albums
+================
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r}
+```   
+ 
+### Chart 3
+    
+```{r}
 ```
 
 ```{r}
