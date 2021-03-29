@@ -110,18 +110,18 @@ For this course the well known Hip Hop artist Kanye West has been chosen. Beside
 He started producing music for mainstream artist to promote his own rapping career. In 2004 he released his first album 'The College Dropout' which jump started his career. Kanye West had a lot of controversial media attention and is known for having manic moments. The sales of his albums have declined since his first album. This Corpus focuses on each album, and tries to find a correlation between the features of the songs and the decline in sales of his albums. We will analyze several periods of his career. 
 
 <b>The College Dropout and Late Registration: 2003-2006</b> <br>
-The first album Kanye West produced was called The College Dropout. This album acclaimed triple platinum and was a successful start for Kanye. Just before the second album Late Registration was released he had his first big controversy. At the Concert for Hurricane Relief he called out George Bush by saying that he doesn't care about black people. Also he stormed out the awards because he lost the award for Best New Artist to Gretchen Wilson. This is were you first see that Kanye has struggles with his mental state and that he has manic episodes. Because he sold so many albums, Kanye decided to create a record label called GOOD Music. These first two albums had the highest valence compared to his later albums, which we will discuss later. Important is that a downward trend is seen during the releases of his albums throughout his career. 
+The first album Kanye West produced was called The College Dropout. This album acclaimed triple platinum and was a successful start for Kanye. Just before the second album Late Registration was released he had his first big controversy. At the Concert for Hurricane Relief he called out George Bush by saying that he doesn't care about black people. Also he stormed out the awards because he lost the award for Best New Artist to Gretchen Wilson. This is were you first see that Kanye has struggles with his mental state and that he has manic episodes. Because he sold so many albums, Kanye decided to create a record label called GOOD Music. These first two albums were high in energy and overall happy compared to his later albums. We hope to see some effect from this later on.
 
 <b>Graduation and, 808s and Heartbreak: 2007-2009</b> <br>
-In these albums he started to work with electronic music from the eighties. Also his chord progression was inspired by The Rolling Stones. He also started working with big artist like Daft Punk and Kid Cudi. This is were his creative talent in producing was coming to fruition, and his productions were more unique than other Hip Hop artists at the time. 
+In these albums he started to work with electronic music from the eighties. Also his chord progression was inspired by The Rolling Stones. He also started working with big artist like Daft Punk and Kid Cudi. This is were his creative talent in producing was coming to fruition, and his productions were more unique than other Hip Hop artists at the time. After Graduation Kanye had a lot of problems in life which affected the way he makes music. This is something we expect to see in analysing his music around this period.
 
-<b>My Beautiful Dark Twisted Fantasy: 2010-2012</b> <br>
+<b>My Beautiful Dark Twisted Fantasy and Yeezus: 2010-2015</b> <br>
+During this period he wanted to focus more on his fashion brand and his family. Everything what happened before really affected him and he wasn't producing as much as he was doing before. Also he had his first child which ofcourse would affect someone in different ways. 
 
-<b>Yeezus: 2013-2015</b> <br>
+<b>The life of Pablo, Ye and Jesus Is King: 2016-present</b> 
+The end of the road. During this peroid he was cancelling tours, having psychologial issues and was even hospitalized because of this. And recently his wife devorced him because of the fact that he is bipolar. Meaning he could go from depressed to manic from time to time making him very unstable.
 
-<b>Ye and Jesus Is King: 2016-2019</b> 
-
-
+We would like to see if there can be found any links between his personal life and the way he produces and writes songs. Because he does both things, there could be a strong correlation. 
 ```{r}
 ```
 
@@ -205,7 +205,7 @@ ggplotly(plot, tooltip = c("text"))
 To understand what key differences were between Kanye West's early work and his latest work we decided to extract different spotify API features and see if there were any features that stood out. We checked several featuers for the two albums, The College Dropout and Jesus is King. Valence, Energy, Dancibility, Speechiness, Acousticness, Liveness and Instrumentalness. Two interesting trends can be seen in the figure on the left. We see a drastic change in both Valence and Speechiness. 
 
 <b>Valence</b> <br>
-The feature <span style='color:red'>Valence</span>, which describes how positive a song is, almost halves during his career. This would mean that his songs started becoming less happy and more angry or sad. 
+The feature <span style='color:red'>Valence</span>, which describes how positive a song is, almost halves during his career. This would mean that his songs started becoming less happy and more angry or sad. We will try to see if there is any way we can correlate between the chords of a song and how happy or sad it is.  
 
 <b>Speechiness</b> <br>
 The feature <span style='color:blue'>Speechiness</span> says something about how many spoken words are found in a track. We see a large difference between Kanye's first album and his last album, suggesting that his first focust more on rap. Since the last album falls under the value of 0.33, Spotify thinks this album is non-speech like music.
@@ -529,7 +529,8 @@ BB %>%
   geom_tile() +
   scale_fill_viridis_c(option = 'A', guide = 'none') +
   theme_minimal() +
-  labs(x = 'Time (s)', y = '')
+  labs(x = 'Time (s)', y = '') +
+  ggtitle("Can't Tell Me Nothing")
 
 BB_2 <- 
   get_tidy_audio_analysis('63T7DJ1AFDD6Bn8VzG6JE8') %>% 
@@ -548,7 +549,8 @@ BB_2 %>%
   geom_tile() +
   scale_fill_viridis_c(option = 'A', guide = 'none') +
   theme_minimal() +
-  labs(x = 'Time (s)', y = '')
+  labs(x = 'Time (s)', y = '') + 
+  ggtitle("Paint It Black")
 ```
 
 ***
@@ -567,7 +569,7 @@ We have seen other tracks of Kanye, depsite not showing it here, we have seen a 
 ```{r}
 # construct chroma analysis
 CA_CT_1 <- 
-    get_tidy_audio_analysis('4KFY4EEv9CN6ivrzD6vEvg') %>% 
+    get_tidy_audio_analysis('2gZUPNdnz5Y45eiGxpHGSc') %>% 
     select(segments) %>% unnest(segments) %>% 
     select(start, duration, pitches)
 CA_CT_1 %>% 
@@ -586,15 +588,30 @@ CA_CT_2 %>%
     compmus_gather_chroma %>% 
       ggplot(aes(x = start + duration / 2, width = duration, y = pitch_class, fill = value)) + 
       geom_tile() +
-      labs(x = 'Time (s)', y = NULL, fill = 'hot') + theme_gray()
+      labs(x = 'Time (s)', y = NULL, fill = 'hot') + theme_gray() + 
+      ggtitle("Power")
 ```
 
 ***
 
-<b>Breath in Breath Out: Happy</b> <br>
+<b>Power and Waves</b> <br>
+We checked two songs, Power and Waves. Power is a song where he sings raps as if he is on his peak. The title of the song says it all. In contrast to waves, is seen as a very sad and conflicting song.</b> <br>
 
+<b>Important Positive Valence Chords</b> <br>
+G-Major     -> Serious, Magnificent, Fantasy
+C           -> Innocently Happy
+
+<b>Important Negative Valence Chords</b> <br>
+F-Minor     -> Obscure, Plaintive, Funereal
+D-Minor     -> Deep Distress, Existential Angst
+C# Minor    -> Despair, Wailing, Weeping
+
+<b>Power: Happy</b> <br>
+So we see some chords that are discribed above, that represent his powerful track. The song is also about how he is in this fantasy where he is the star. He feels happy and strong, but also knows it's some sort of illusion. It is nice to see that in the chromogram
 
 <b>Waves: Sad</b> <br>
-We see in the chromogram that the chords F, Bb, Db and C are mostly used. These are chords that are mostly present in sad songs, like Rolling in the Deep from Adele. 
+We see in the chromogram that the chords F, Bb, Db and C are mostly used. These are chords that are mostly present in sad songs, like Rolling in the Deep from Adele. The song is from his last period, were the valence is the lowest. Also if we follow the news things didn't go well with his marriage because his wife couldn't handel Kanye's struggle with his emotions. 
 
 ### Conclusion
+
+In conclusion, we can see that during Kanye's life a lot has happened and this had an effect on his productions. Especially during the events after Graduation, were his music totally changed from rather powerful and happy to sad and even emo. He did get his life back in track when he started writing My Beautiful and Dark fantasy, but it still had a lot of self doubt on what he actually was experiencing. Being bipolar can be hard to deal with expecially in your manic phases where you take to big of risks. We have seen a lot of controversies from him, but let's judge the work and not the artist.
