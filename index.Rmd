@@ -104,6 +104,7 @@ by_album_summary <- Kanye %>%
 
 
 ***
+
 <b>The Corpus</b> <br>
 For this course the well known Hip Hop artist Kanye West has been chosen. Beside being active in the music industry, he also works as a fashion designer and a politician. 
 
@@ -122,6 +123,7 @@ During this period he wanted to focus more on his fashion brand and his family. 
 The end of the road. During this peroid he was cancelling tours, having psychologial issues and was even hospitalized because of this. And recently his wife devorced him because of the fact that he is bipolar. Meaning he could go from depressed to manic from time to time making him very unstable.
 
 We would like to see if there can be found any links between his personal life and the way he produces and writes songs. Because he does both things, there could be a strong correlation. 
+
 ```{r}
 ```
 
