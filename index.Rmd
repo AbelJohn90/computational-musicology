@@ -125,7 +125,8 @@ In these albums he started to work with electronic music from the eighties. Also
 ```{r}
 ```
 
-### The trend of Kanye from 2003 to 2019 {data-commentary-width=350}
+### API features from 2003 to 2019 {data-commentary-width=450}
+
 
 ```{r}
 M_dif <- Kanye %>%
@@ -340,7 +341,7 @@ SSM_2 %>%
 <b>SSM Matrix</b> <br>
 ```{r}
 ```
-### Chordograms Tempogram and it's detailed cock in my ass{data-commentary-width=300}
+### Chordograms Tempogram {data-commentary-width=300}
 
 
 ***
