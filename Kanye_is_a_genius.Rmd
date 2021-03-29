@@ -70,10 +70,8 @@ by_album <- Kanye %>%
          album_name == "The Life Of Pablo" |
          album_name == "ye" |
          album_name == "JESUS IS KING") %>%
-  group_by(album_name, album_release_year) %>%
-  summarize(valence = mean(valence),
-            energy = mean(energy),
-            tempo = mean(tempo))
+        ggplot(aes(x = 1, y = valance)) + geom_histogram() + facet_wrap(~ album_name)
+
   
 ggplot(by_album, aes(x = album_release_year, y = valence, color = album_name)) +
     geom_point() +
@@ -95,6 +93,19 @@ ggplot(by_album, aes(x = album_release_year, y = tempo, color = album_name)) +
         col = "#C42126",
         se = FALSE,
         size = 1)
+
+
+by_album %>%
+  ggplot(aes(x = valence, col=album)) +
+  geom_histogram() +
+  facet_wrap(~ album_wrap, scales="free_y")+
+  scale_x_continuous(
+    limits=c(0,1),
+    breaks=c(0,0.5,1)
+  )+
+  labs(color='Playlist', title='Valence per Album') +
+  xlab('Valence') +
+  ylab("Count")
 ```
 
 ```{r cars}
@@ -102,6 +113,10 @@ summary(cars)
 ```
 
 ## R Markdown
+  group_by(album_name, album_release_year) %>%
+  summarize(valence = mean(valence),
+            energy = mean(energy),
+            tempo = mean(tempo))
 
 The data:
 Most people know the hip-hop artist Kanye West.

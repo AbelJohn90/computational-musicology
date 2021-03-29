@@ -2,62 +2,347 @@
 title: "Kanye West"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+
+    storyboard: true
+    vertical_layout: scroll
+    theme: journal
 ---
+
+<style>
+.chart-stage-flex{
+  min-height: 600px;
+}
+
+body {
+  padding-top: 70px;
+  font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height:1.42857143;}
+}
+
+.section.sidebar {
+  top: 61px;
+}
+
+.storyboard-nav .sbframelist ul li.active {
+  border-left: 3px solid #1db954;
+}
+
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #d9d9d9;
+    background-color: #7d7d7d;
+}
+
+
+.nav-tabs-custom > .nav-tabs > li > a {
+  border-top-color: white;
+  border-right-color: white;
+  border-left-color: white;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: rgba(50, 93, 136, 0.7);
+}
+
+
+
+
+
+.navbar-inverse{
+  background-color:#121212;
+  border-color:#080808
+}
+
+</style>
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 ```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 library(spotifyr)
 library(tidyverse)
 library(usethis)
 library(knitr)
+library(plotly)
 library(compmus)
 ```
-About Kanye
-================
-Column 
--------------------------------------
-    
-### Chart 1
-    
-```{r}
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+Kanye <- get_artist_audio_features("kanye west")
+Kanye
+by_album <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "Late Registration" |
+         album_name == "Graduation" | 
+         album_name == "808s & Heartbreak" |
+         album_name == "My Beautiful Dark Twisted Fantasy" |
+         album_name == "Yeezus" |
+         album_name == "The Life Of Pablo" |
+         album_name == "ye" |
+         album_name == "JESUS IS KING")
+
+by_album_summary <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "Late Registration" |
+         album_name == "Graduation" | 
+         album_name == "808s & Heartbreak" |
+         album_name == "My Beautiful Dark Twisted Fantasy" |
+         album_name == "Yeezus" |
+         album_name == "The Life Of Pablo" |
+         album_name == "ye" |
+         album_name == "JESUS IS KING") %>%
+    group_by(album_name, album_release_year) %>%
+    summarize(valence = mean(valence))
+        
 ```
-   
-Column {.tabset}
--------------------------------------
-   
-### Chart 2
+### The Corpus: The emotional rollecoaster that represents the life of Kanye West and the type of music he created. {data-commentary-width=650}
+
+<img src="https://inbeautymoon.com/wp-content/uploads/2020/07/ccelebritieskanye-west-2-1024x683-1-1058x641.jpg" width="100%">
+</img>
+
+
+***
+<b>The Corpus</b> <br>
+For this course the well known Hip Hop artist Kanye West has been chosen. Beside being active in the music industry, he also works as a fashion designer and a politician. 
+
+He started producing music for mainstream artist to promote his own rapping career. In 2004 he released his first album 'The College Dropout' which jump started his career. Kanye West had a lot of controversial media attention and is known for having manic moments. The sales of his albums have declined since his first album. This Corpus focuses on each album, and tries to find a correlation between the features of the songs and the decline in sales of his albums. We will analyze several periods of his career. 
+
+<b>The College Dropout and Late Registration: 2003-2006</b> <br>
+The first album Kanye West produced was called The College Dropout. This album acclaimed triple platinum and was a successful start for Kanye. Just before the second album Late Registration was released he had his first big controversy. At the Concert for Hurricane Relief he called out George Bush by saying that he doesn't care about black people. Also he stormed out the awards because he lost the award for Best New Artist to Gretchen Wilson. This is were you first see that Kanye has struggles with his mental state and that he has manic episodes. Because he sold so many albums, Kanye decided to create a record label called GOOD Music. These first two albums had the highest valence compared to his later albums, which we will discuss later. Important is that a downward trend is seen during the releases of his albums throughout his career. 
+
+<b>Graduation and, 808s and Heartbreak: 2007-2009</b> <br>
+In these albums he started to work with electronic music from the eighties. Also his chord progression was inspired by The Rolling Stones. He also started working with big artist like Daft Punk and Kid Cudi. This is were his creative talent in producing was coming to fruition, and his productions were more unique than other Hip Hop artists at the time. 
+
+<b>My Beautiful Dark Twisted Fantasy: 2010-2012</b> <br>
+
+<b>Yeezus: 2013-2015</b> <br>
+
+<b>Ye and Jesus Is King: 2016-2019</b> 
+
 
 ```{r}
-```   
- 
-### Chart 3
-Kanye Omari Wests an American rapper, record producer, and fashion designer. He has been influential in the 21st-century development of mainstream hip hop and popular music in general.
-
-Born in Atlanta and raised in Chicago, West was first known as a producer for Roc-A-Fella Records in the early 2000s, producing singles for several mainstream artists. Intent on pursuing a solo career as a rapper, West released his debut album The College Dropout in 2004 to critical and commercial success, and founded the record label GOOD Music. He experimented with a variety of musical genres on subsequent acclaimed studio albums, including Late Registration (2005), Graduation (2007), and 808s & Heartbreak (2008). Drawing inspiration from maximalism and minimalism, respectively, West's fifth album My Beautiful Dark Twisted Fantasy (2010) and sixth album Yeezus (2013) were also critical successes. He went on to release The Life of Pablo (2016), Ye (2018), and Jesus Is King (2019). West's discography also includes the full-length collaborations Watch the Throne (2011) and Kids See Ghosts (2018) with Jay-Z and Kid Cudi, respectively. 
-```{r}
-
 ```
-Albums
-================
-Column 
--------------------------------------
-    
-### Chart 1
-    
-```{r}
-```
-   
-Column {.tabset}
--------------------------------------
-   
-### Chart 2
+
+### The trend of Kanye from 2003 to 2019 {data-commentary-width=350}
 
 ```{r}
-```   
- 
-### Chart 3
-    
+M_dif <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "JESUS IS KING") %>%
+  group_by(album_name) %>%
+  arrange(desc(album_name)) %>%
+    summarize(dan=mean(danceability), 
+              ene=mean(energy), 
+              lou=mean(loudness),
+              spe=mean(speechiness), 
+              aco=mean(acousticness), 
+              ins=mean(instrumentalness), 
+              liv=mean(liveness), 
+              val=mean(valence), 
+              tem=mean(tempo),
+              dansd=sd(danceability), 
+              enesd=sd(energy), 
+              lousd=sd(loudness), 
+              spesd=sd(speechiness), 
+              acosd=sd(acousticness), 
+              inssd=sd(instrumentalness), 
+              livsd=sd(liveness), 
+              valsd=sd(valence), 
+              temsd=sd(tempo)
+              )
+MF <- rbind(tail(M_dif, 1), head(M_dif, 1))
+
+plot <- (
+  ggplot(MF) 
+  + geom_point(aes(x=album_name, y=dan, size=dansd, text=paste("<b>Danceability</b>\nValue:", dan, "\nSD:", dansd), alpha=0.5), col='green') 
+  + geom_line(aes(x=album_name, y=dan, group=1, alpha=0.5), col='green')
+  + geom_text(aes(x=0.7, y=first(dan), label='Danceability'), col='green')
+  
+  + geom_segment(aes(x=1, xend=1, y=0, yend=1), col='red', size=20, alpha=0.05)
+  + geom_segment(aes(x=2, xend=2, y=0, yend=1), col='blue', size=20, alpha=0.05)
+  
+  
+  + geom_point(aes(x=album_name, y=ene, size=enesd, text=paste("<b>Energy</b>\nValue:", ene, "\nSD:", enesd), alpha=0.5), col='red') 
+  + geom_line(aes(x=album_name, y=ene, group=1, alpha=0.5), col='red')
+  + geom_text(aes(x=0.7, y=first(ene), label='Energy'), col='red')
+  
+  + geom_point(aes(x=album_name, y=spe, size=spesd, text=paste("<b>Speechiness</b>\nValue:", spe, "\nSD:", spesd), alpha=0.5), col='blue') 
+  + geom_line(aes(x=album_name, y=spe, group=1, alpha=0.5), col='blue')
+  + geom_text(aes(x=0.7, y=first(spe), label='Speechiness'), col='blue')
+  
+  + geom_point(aes(x=album_name, y=aco, size=acosd, text=paste("<b>Acousticness</b>\nValue:", aco, "\nSD:", acosd), alpha=0.5), col='pink') 
+  + geom_line(aes(x=album_name, y=aco, group=1, alpha=0.5), col='pink')
+  + geom_text(aes(x=0.7, y=first(aco), label='Acousticness'), col='pink')
+  
+  + geom_point(aes(x=album_name, y=ins, size=inssd, text=paste("<b>Instrumentalness</b>\nValue:", ins, "\nSD:", inssd), alpha=0.5), col='orange') 
+  + geom_line(aes(x=album_name, y=ins, group=1, alpha=0.5), col='orange')
+  + geom_text(aes(x=0.7, y=first(ins), label='Instrumentalness'), col='orange')
+  
+  + geom_point(aes(x=album_name, y=liv, size=livsd, text=paste("<b>Liveness</b>\nValue:", liv, "\nSD:", livsd), alpha=0.5), col='purple') 
+  + geom_line(aes(x=album_name, y=liv, group=1, alpha=0.5), col='purple')
+  + geom_text(aes(x=0.7, y=first(liv), label='Liveness'), col='purple')
+  
+  + geom_point(aes(x=album_name, y=val, size=valsd, text=paste("<b>Valence</b>\nValue:", val, "\nSD:", valsd), alpha=0.5), col='black') 
+  + geom_line(aes(x=album_name, y=val, group=2, alpha=0.5), col='black')
+  + geom_text(aes(x=0.7, y=first(val), label='Valence'), col='black')
+  
+  + xlab('')
+  + ylab('Value')
+  + theme_light()
+  
+)
+ggplotly(plot, tooltip = c("text"))
+```
 ```{r}
 ```
+
+***
+
+<b>The features from the Spotify API</b> <br>
+Spotify has different things
+
+### Analyzing the loss in valence of each album{data-commentary-width=350}
+
+```{r}
+by_album <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "Late Registration" |
+         album_name == "Graduation" | 
+         album_name == "808s & Heartbreak" |
+         album_name == "My Beautiful Dark Twisted Fantasy" |
+         album_name == "Yeezus" |
+         album_name == "The Life Of Pablo" |
+         album_name == "ye" |
+         album_name == "JESUS IS KING")
+
+by_album_summary <- Kanye %>%
+  filter(album_name == "The College Dropout" |
+         album_name == "Late Registration" |
+         album_name == "Graduation" | 
+         album_name == "808s & Heartbreak" |
+         album_name == "My Beautiful Dark Twisted Fantasy" |
+         album_name == "Yeezus" |
+         album_name == "The Life Of Pablo" |
+         album_name == "ye" |
+         album_name == "JESUS IS KING") %>%
+    group_by(album_name, album_release_year) %>%
+    summarize(valence = mean(valence))
+
+ggplot(by_album, aes(x = valence)) + 
+geom_histogram() + 
+facet_wrap(~ album_name, scales='free_y') +
+scale_y_continuous(
+  limits=c(0,10)
+  ) +
+  ggtitle("The Valence per track of each album")
+
+ggplot(by_album_summary, aes(x = album_release_year, y = valence, color = album_name)) +
+    geom_point() +
+    stat_smooth(method = "lm",
+        col = "#C42126",
+        se = FALSE,
+        size = 1) +
+        ggtitle("Trend of valence for each album")
+
+        
+```
+
+***
+
+<b>Valence by album from 2003 to 2019</b> <br>
+Kanye west produced 9 albums during his career. We used the Spotify API to extract the valence of each track in each album. Valence is a term used in psychology to describe the emotion of a specific event. Here a low valence is correlated to averseness and positive to goodness. The spotify API uses this feature to describe if a song has a negative emotion like fear and anger, or a positive emotion like joy and happiness. 
+
+From the first album The College Dropout (2003) to Jesus is King (2019) we see a decline in the valence. We suspect that this decline in valence correlates with the decline of the sales of his album. The first two albums The College Dropout and Late registration have a high valence relative to the last two albums ye and Jezus is King which have a low valence.
+```{r}
+```
+### Self Similarity Matrices for a track in each album{data-commentary-width=300}
+```{r}
+
+SSM_1 <-
+  get_tidy_audio_analysis("0IW0qaeyxL5Et4UG2MrJKB") %>% # Change URI.
+  compmus_align(beats, segments) %>%                     # Change `bars`
+  select(beats) %>%                                      #   in all three
+  unnest(beats) %>%                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) %>%
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+SSM_1 %>%
+  compmus_self_similarity(timbre, "cosine") %>% 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x = "", y = "")
+
+SSM_2 <-
+  get_tidy_audio_analysis("3JWiDGQX2eTlFvKj3Yssj3") %>% # Change URI.
+  compmus_align(beats, segments) %>%                     # Change `bars`
+  select(beats) %>%                                      #   in all three
+  unnest(beats) %>%                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) %>%
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+SSM_2 %>%
+  compmus_self_similarity(timbre, "cosine") %>% 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x = "", y = "")
+```
+
+***
+
+<b>SSM Matrix</b> <br>
+```{r}
+```
+### Chordograms Tempogram and it's detailed cock in my ass{data-commentary-width=300}
+
+
+***
+
+<b>Tempograms between two popular songs</b> <br>
